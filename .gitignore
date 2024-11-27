@@ -1,7 +1,5 @@
 # Ignore real config files
-.env
 .zprofile
-.zshrc.local
 
 # Don't ignore example files
 !.env.example
