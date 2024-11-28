@@ -121,4 +121,8 @@ extract() {
 #====================
 
 # Source local machine-specific configurations if they exist
-[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+if [ -f "$HOME/.zshrc.local" ]; then
+    source "$HOME/.zshrc.local"
+else
+    echo "No $HOME/.zshrc.local file found, skipping."
+fi
