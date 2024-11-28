@@ -6,10 +6,10 @@ alias ll='ls -lasht'
 alias gs='git status'
 
 SCRIPTS_DIR="$HOME/dev/scripts"
-[ -f "$SCRIPTS_DIR/speech_to_text_whisperAPI.sh" ] && \
-    alias speech_to_text="$SCRIPTS_DIR/speech_to_text_whisperAPI.sh"
+[ -f "$SCRIPTS_DIR/speech_to_text/speech_to_text_whisperAPI.sh" ] && \
+    alias speech_to_text="$SCRIPTS_DIR/speech/speech_to_text_whisperAPI.sh"
 
-[ -f "$SCRIPTS_DIR/speech_to_text_whisperLocal.sh" ] && \
+[ -f "$SCRIPTS_DIR/speech_to_text/speech_to_text_whisperLocal.sh" ] && \
     alias speech_to_text_local="$SCRIPTS_DIR/speech_to_text_whisperLocal.sh"
 
 #====================
