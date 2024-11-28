@@ -6,11 +6,20 @@ alias ll='ls -lasht'
 alias gs='git status'
 
 SCRIPTS_DIR="$HOME/dev/scripts"
-[ -f "$SCRIPTS_DIR/speech_to_text/speech_to_text_whisperAPI.sh" ] && \
-    alias speech_to_text="$SCRIPTS_DIR/speech/speech_to_text_whisperAPI.sh"
+SPEECH_TO_TEXT_DIR="$SCRIPTS_DIR/speech_to_text"
+[ -f "$SPEECH_TO_TEXT_DIR/speech_to_text_whisperAPI.sh" ] && \
+    alias speech_to_text="$SPEECH_TO_TEXT_DIR/speech_to_text_whisperAPI.sh"
 
-[ -f "$SCRIPTS_DIR/speech_to_text/speech_to_text_whisperLocal.sh" ] && \
-    alias speech_to_text_local="$SCRIPTS_DIR/speech_to_text_whisperLocal.sh"
+[ -f "$SPEECH_TO_TEXT_DIR/speech_to_text_whisperLocal.sh" ] && \
+    alias speech_to_text_local="$SPEECH_TO_TEXT_DIR/speech_to_text_whisperLocal.sh"
+
+#====================
+# Load .env file
+#====================
+
+if [ -f "$HOME/.env" ]; then
+    export $(grep -v '^#' "$HOME/.env" | xargs)
+fi
 
 #====================
 # History Configuration
