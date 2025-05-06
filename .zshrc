@@ -18,7 +18,7 @@ SPEECH_TO_TEXT_DIR="$SCRIPTS_DIR/speech_to_text"
 #====================
 
 if [ -f "$HOME/.env" ]; then
-    export $(grep -v '^#' "$HOME/.env" | xargs)
+    export $(grep -v '^#' "$HOME/.env" | xargs) > /dev/null 2>&1
 fi
 
 #====================
@@ -93,7 +93,6 @@ tcr() {
     fi
     touch "$1" && cursor "$1"
 }
-
 # Extract various archive formats
 extract() {
     if [ -f $1 ]; then
