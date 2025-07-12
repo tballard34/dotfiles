@@ -111,6 +111,7 @@ extract() {
             *)          echo "'$1' cannot be extracted via extract()" ;;
         esac
     else
+
         echo "'$1' is not a valid file"
     fi
 }
@@ -125,3 +126,4 @@ if [ -f "$HOME/.zshrc.local" ]; then
 else
     echo "No $HOME/.zshrc.local file found, skipping."
 fi
+
