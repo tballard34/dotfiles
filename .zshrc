@@ -127,3 +127,20 @@ else
     echo "No $HOME/.zshrc.local file found, skipping."
 fi
 
+#====================
+# Node.js — fnm is default (projects use .node-version)
+#====================
+# nvm still loads if installed (legacy); fnm runs after and prepends shims so the active
+# `node`/`npm`/`corepack` follow fnm + directory switches (`fnm env --use-on-cd`).
+# Non-login shells (some IDE tasks) may skip this file—use `just local` / explicit `fnm use`.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+if command -v fnm >/dev/null 2>&1; then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+    command -v corepack >/dev/null 2>&1 && corepack enable >/dev/null 2>&1
+fi
+
+# Added by Antigravity
+export PATH="/Users/tballard/.antigravity/antigravity/bin:$PATH"
