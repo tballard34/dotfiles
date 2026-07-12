@@ -23,6 +23,7 @@ chmod +x install.sh
 - `.zshrc`: Main zsh configuration
 - `.zshrc.local.example`: _Template_ Local zsh customizations
 - `.zprofile`: Login shell configuration
+- `.zprofile.local.example`: _Template_ Local login-shell customizations
 - `.env.example`: _Template_ for environment variables
 
 ## Customization

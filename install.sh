@@ -18,6 +18,7 @@ echo
 # Create symlinks
 ln -sf "$DOTFILES/.zshrc" "$HOME_DIR/.zshrc"
 ln -sf "$DOTFILES/.zprofile" "$HOME_DIR/.zprofile"
+ln -sf "$DOTFILES/.zprofile.local" "$HOME_DIR/.zprofile.local"
 ln -sf "$DOTFILES/.zshrc.local" "$HOME_DIR/.zshrc.local"
 ln -sf "$DOTFILES/.env" "$HOME_DIR/.env"
 

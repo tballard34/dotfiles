@@ -1,0 +1,4 @@
+# Local login-shell configuration.
+#
+# Example: initialize fnm here when non-interactive login shells need the same
+# Node.js version-manager setup as interactive zsh sessions.
