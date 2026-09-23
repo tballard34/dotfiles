@@ -1,5 +1,5 @@
 # Added by ForgeCode installer
-export PATH="/Users/tballard/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 #====================
 # Aliases
 #====================
@@ -20,7 +20,11 @@ SPEECH_TO_TEXT_DIR="$SCRIPTS_DIR/speech_to_text"
 #====================
 
 if [ -f "$HOME/.env" ]; then
-    export $(grep -v '^#' "$HOME/.env" | xargs) > /dev/null 2>&1
+    # This is a trusted local shell file; export assignments without splitting values.
+    () {
+        setopt LOCAL_OPTIONS ALLEXPORT
+        source "$HOME/.env"
+    }
 fi
 
 #====================
@@ -125,8 +129,6 @@ extract() {
 # Source local machine-specific configurations if they exist
 if [ -f "$HOME/.zshrc.local" ]; then
     source "$HOME/.zshrc.local"
-else
-    echo "No $HOME/.zshrc.local file found, skipping."
 fi
 
 #====================
@@ -134,18 +136,19 @@ fi
 #====================
 # nvm still loads if installed (legacy); fnm runs after and prepends shims so the active
 # `node`/`npm`/`corepack` follow fnm + directory switches (`fnm env --use-on-cd`).
-# Non-login shells (some IDE tasks) may skip this file—use `just local` / explicit `fnm use`.
+# Non-interactive shells may skip this file—use `just local` / explicit `fnm use`.
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 if command -v fnm >/dev/null 2>&1; then
     eval "$(fnm env --use-on-cd --shell zsh)"
-    command -v corepack >/dev/null 2>&1 && corepack enable >/dev/null 2>&1
 fi
 
 # Added by Antigravity
-export PATH="/Users/tballard/.antigravity/antigravity/bin:$PATH"
+if [ -d "$HOME/.antigravity/antigravity/bin" ]; then
+    export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+fi
 
 # >>> forge initialize >>>
 # !! Contents within this block are managed by 'forge zsh setup' !!
@@ -160,7 +163,7 @@ if [[ ! " ${plugins[@]} " =~ " zsh-syntax-highlighting " ]]; then
 fi
 
 # Load forge shell plugin (commands, completions, keybindings) if not already loaded
-if [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
+if command -v forge >/dev/null 2>&1 && [[ -z "$_FORGE_PLUGIN_LOADED" ]]; then
     eval "$(forge zsh plugin)"
 fi
 
@@ -177,4 +180,6 @@ fi
 RPROMPT=''
 
 # opencode
-export PATH=/Users/tballard/.opencode/bin:$PATH
+if [ -d "$HOME/.opencode/bin" ]; then
+    export PATH="$HOME/.opencode/bin:$PATH"
+fi
